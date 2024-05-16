@@ -1,8 +1,8 @@
 import React from "react";
 
-function LocationDateTime() {
+function LocationDateTime({ rounding }) {
   return (
-    <div className="bg-cyan-800 my-2 rounded-xl">
+    <div className={`bg-cyan-800 my-2 ${rounding}`}>
       <div className="flex justify-center flex-col items-center">
         <p className="text-white text-3xl m-4">Location</p>
       </div>

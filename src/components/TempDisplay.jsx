@@ -1,10 +1,10 @@
 import React from "react";
 
-function TempDisplay() {
+function TempDisplay({ rounding }) {
   const highLowClass = "flex mx-4 text-white";
   return (
     <>
-      <div className="flex flex-col rounded-xl my-2.5 bg-cyan-500">
+      <div className={`flex flex-col ${rounding} my-2.5 bg-cyan-500`}>
         <p className="flex justify-center text-white ">Clear</p>
         <div className="flex flex-row items-center justify-center">
           <img

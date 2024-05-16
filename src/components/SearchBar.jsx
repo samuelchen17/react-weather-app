@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchBar() {
+function SearchBar({ rounding }) {
   const iconClass =
     "w-12 h-12 text-white cursor-pointer transition ease-out hover:scale-125";
   return (
@@ -9,7 +9,7 @@ function SearchBar() {
         <input
           type="text"
           placeholder="city name"
-          className="text-xl font-light p-2 w-full shadow-xl focus:outline-none capitalize placeholder:lowercase"
+          className={`text-xl font-light p-2 w-full shadow-xl focus:outline-none ${rounding} capitalize placeholder:lowercase`}
         />
         {/* search icon */}
         <svg

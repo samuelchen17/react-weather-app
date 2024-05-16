@@ -1,8 +1,8 @@
 import React from "react";
 
-function HourlyForecast() {
+function HourlyForecast({ rounding }) {
   return (
-    <div className="bg-red-700 my-2 pb-2 pt-2 px-3 rounded-xl">
+    <div className={`bg-red-700 my-2 pb-2 pt-2 px-3 ${rounding}`}>
       <div className="flex items-center justify-start">
         <p className="text-white text-xl">HOURLY FORECAST</p>
       </div>
