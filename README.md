@@ -1,3 +1,9 @@
 # React Weather App
 
 A weather app made using react + tailwind CSS
+
+To run the app run npm install followed by npm run dev
+
+go to open weather and create an account, follow the process and create an API key
+
+insert api key in the react_weather_app/blob/main/src/services/weatherService.js file under API_KEY

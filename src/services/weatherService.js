@@ -1,11 +1,15 @@
-// Function to get weather data
-// inside the function https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+// https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
-const API_KEY = "d7881d60997d7fe4569ea1041e781487";
+// https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=28.0836&lon=-80.6081&appid=d7881d60997d7fe4569ea1041e781487
+
+// https://api.openweathermap.org/data/3.0/onecall?lat=28.0836&lon=-80.6081&appid=d7881d60997d7fe4569ea1041e781487
+
+const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
 
 // this function gets the open weather api URL
 function getWeatherUrl(infoType, searchParams) {
+  console.log(API_KEY);
   const url = new URL(BASE_URL + infoType);
   // spreading searchParam here as it is from App.jsx
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
@@ -53,6 +57,7 @@ const getFormattedWeatherData = async (searchParams) => {
     searchParams
   ).then(formatCurrentWeather);
 
+  //   const { lat, lon } = formattedCurrentWeather;
   return formattedCurrentWeather;
 };
 
