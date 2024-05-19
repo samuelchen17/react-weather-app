@@ -14,7 +14,7 @@ function WeeklyForecast({ rounding }) {
       </div>
       <hr className="text-white"></hr>
       <div className="flex flex-col justify-between text-white">
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between bg-black rounded-md my-1">
           <p className="text-sm">MON</p>
           <img
             className="size-12"
@@ -24,27 +24,7 @@ function WeeklyForecast({ rounding }) {
           <p className="text-sm">12</p>
           <p className="text-sm">16</p>
         </div>
-        <div className="flex flex-row justify-between">
-          <p className="text-sm">MON</p>
-          <img
-            className="size-12"
-            src="http://openweathermap.org/img/wn/01d@2x.png"
-            alt=""
-          />
-          <p className="text-sm">12</p>
-          <p className="text-sm">16</p>
-        </div>
-        <div className="flex flex-row justify-between">
-          <p className="text-sm">MON</p>
-          <img
-            className="size-12"
-            src="http://openweathermap.org/img/wn/01d@2x.png"
-            alt=""
-          />
-          <p className="text-sm">12</p>
-          <p className="text-sm">16</p>
-        </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between bg-black rounded-md my-1">
           <p className="text-sm">MON</p>
           <img
             className="size-12"

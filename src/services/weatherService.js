@@ -7,8 +7,6 @@ function getWeatherUrl(version, apiName, searchParams) {
   // spreading searchParam here as it is from App.jsx
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
 
-  //   console.log(url);
-
   return fetch(url).then((res) => res.json());
 }
 
