@@ -4,13 +4,13 @@ import LocationDateTime from "./components/LocationDateTime";
 import TempDisplay from "./components/TempDisplay";
 import HourlyForecast from "./components/HourlyForecast";
 import WeeklyForecast from "./components/WeeklyForecast";
-import getFormattedWeatherData from "./services/weatherService";
+import { getIconFromURL, weatherData } from "./services/weatherService";
 
 function App() {
   const [search, setSearch] = useState("");
 
   const fetchWeather = async () => {
-    const data = await getFormattedWeatherData({ q: "melbourne" });
+    const data = await weatherData({ q: "melbourne" });
     console.log(data);
   };
 

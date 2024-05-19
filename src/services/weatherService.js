@@ -1,92 +1,85 @@
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/";
 
-// this function gets the open weather api URL
+// get api URL
 function getWeatherUrl(version, apiName, searchParams) {
   const url = new URL(BASE_URL + version + "/" + apiName);
   // spreading searchParam here as it is from App.jsx
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
-  console.log(url);
-  // find out what this line does
+
+  //   console.log(url);
+
   return fetch(url).then((res) => res.json());
 }
 
-// const getCoord = (data) => {
-//   const {
-//     coord: { lat, lon },
-//   } = data;
+// get coordinates of the city
+const getLatLon = (data) => {
+  const {
+    coord: { lat, lon },
+  } = data;
 
-//   return { lat, lon };
-// };
+  return { lat, lon };
+};
+
+// Format data
+const formatWeatherData = (data) => {
+  let { timezone, current, hourly, daily } = data;
+
+  current = {
+    dt: current.dt,
+    temp: current.temp,
+    sunrise: current.sunrise,
+    sunset: current.sunset,
+    feels_like: current.feels_like,
+    conditions: current.weather[0].main,
+    icon: current.weather[0].icon,
+    low: daily[0].temp.min,
+    high: daily[0].temp.max,
+  };
+
+  hourly = hourly.slice(1, 10).map((d) => {
+    return {
+      title: d.dt,
+      icon: d.weather[0].icon,
+      temp: d.temp,
+    };
+  });
+
+  daily = daily.slice(1, 7).map((d) => {
+    return {
+      title: d.dt,
+      icon: d.weather[0].icon,
+      temp: d.temp.day,
+      low: d.temp.min,
+      high: d.temp.max,
+    };
+  });
+
+  return { timezone, current, hourly, daily };
+};
+
+// Get weather icon from URL
+const getIconFromURL = (iconID) =>
+  `http://openweathermap.org/img/wn/${iconID}@2x.png`;
 
 // Get the weather data from the API using coordinates
-const formattedWeatherData = async (searchParams) => {
+const weatherData = async (searchParams) => {
   // get coordinates based on city name search
   const cityCoord = await getWeatherUrl("2.5", "weather", searchParams).then(
-    (data) => {
-      const {
-        coord: { lat, lon },
-      } = data;
-
-      return { lat, lon };
-    }
+    getLatLon
   );
 
   // format the weather data
-  const formatWeatherData = getWeatherUrl("3.0", "onecall", {
+  const formattedWeatherData = getWeatherUrl("3.0", "onecall", {
     lat: cityCoord.lat,
     lon: cityCoord.lon,
+    exclude: "minutely,alerts",
     appid: API_KEY,
-  }).then((data) => {
-    let { lat, lon } = data;
-    // slice the data here
-  });
+    units: "metric",
+  }).then(formatWeatherData);
 
-  console.log(formatWeatherData);
-  return formatWeatherData;
+  //   console.log(formattedWeatherData);
+  return formattedWeatherData;
 };
 
-// format weather data into usable variables
-// const formatCurrentWeather = (data) => {
-//   const {
-//     coord: { lat, lon },
-//     main: { temp, feels_like, temp_min, temp_max },
-//     name,
-//     sys: { country, sunrise, sunset },
-//     dt,
-//     weather,
-//     wind: { speed },
-//   } = data;
-
-//   // Need to further destructure weather
-//   const { main: details, icon } = weather[0];
-
-//   return {
-//     lat,
-//     lon,
-//     temp,
-//     feels_like,
-//     temp_min,
-//     temp_max,
-//     name,
-//     country,
-//     sunset,
-//     sunrise,
-//     dt,
-//     speed,
-//     details,
-//     icon,
-//   };
-// };
-
-// const getFormattedWeatherData = async (searchParams) => {
-//   const formattedCurrentWeather = await getWeatherUrl(
-//     "weather",
-//     searchParams
-//   ).then(formatCurrentWeather);
-
-//   //   const { lat, lon } = formattedCurrentWeather;
-//   return formattedCurrentWeather;
-// };
-
-export default formattedWeatherData;
+export { getIconFromURL, weatherData };
