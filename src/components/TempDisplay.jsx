@@ -1,17 +1,15 @@
 import React from "react";
 
 function TempDisplay({
-  rounding,
+  design,
   // current: { temp, conditions }
 }) {
   const highLowClass = "flex mx-4 text-white";
   return (
-    <div
-      className={`flex flex-col ${rounding} my-2 py-4 bg-sky-500/[.30] shadow-xl text-white`}
-    >
-      <p className="flex justify-center">
+    <div className={`flex flex-col ${design} py-4 text-white`}>
+      <p className="flex justify-center text-3xl">
         {/* {conditions} */}
-        clear day
+        CLEAR
       </p>
       <div className="flex flex-row items-center justify-center">
         <img
@@ -36,3 +34,36 @@ function TempDisplay({
 }
 
 export default TempDisplay;
+
+// function TempDisplay({
+//     design,
+//     // current: { temp, conditions }
+//   }) {
+//     const highLowClass = "flex mx-4 text-white";
+//     return (
+//       <div className={`flex flex-col ${design} py-4 text-white`}>
+//         <p className="flex justify-center text-3xl">
+//           {/* {conditions} */}
+//           CLEAR
+//         </p>
+//         <div className="flex flex-row items-center justify-center">
+//           <img
+//             className=""
+//             src="http://openweathermap.org/img/wn/01d@2x.png"
+//             alt=""
+//           />
+//           <p className="text-5xl">
+//             {/* {temp.toFixed()}°C */}
+//             24
+//           </p>
+//         </div>
+//         <div className="flex flex-col justify-center items-center py-8 text-xl">
+//           <p>feels like 19°</p>
+//         </div>
+//         <div className="flex justify-center items-center flex-row">
+//           <p className={highLowClass}>low: 8°</p>
+//           <p className={highLowClass}>high: 25°</p>
+//         </div>
+//       </div>
+//     );
+//   }

@@ -25,7 +25,7 @@ function App() {
 
   // console.log(weather.current.conditions);
 
-  const containerRounding = "rounded-xl";
+  const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-2";
 
   const dayTime =
     "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
@@ -35,24 +35,24 @@ function App() {
   return (
     <div className={`flex justify-center min-h-dvh ${dayTime}`}>
       <div className="flex flex-col h-fit w-dvw max-w-lg my-4 px-2 outline-dotted outline-green-500 overflow-auto">
-        <SearchBar rounding={containerRounding} />
+        <SearchBar />
 
         {/* if weather is not null, then load */}
         {/* {weather && (
           <div> */}
-        <LocationDateTime rounding={containerRounding} />
+        <LocationDateTime design={containerDesign} />
         <TempDisplay
           // current={weather.current}
-          rounding={containerRounding}
+          design={containerDesign}
         />
 
         <HourlyForecast
           // items={weather.hourly}
-          rounding={containerRounding}
+          design={containerDesign}
         />
         <WeeklyForecast
           // items={weather.daily}
-          rounding={containerRounding}
+          design={containerDesign}
         />
         {/* </div>
         )} */}
