@@ -26,9 +26,15 @@ function App() {
   // console.log(weather.current.conditions);
 
   const containerRounding = "rounded-xl";
+
+  const dayTime =
+    "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
+  const nightTime =
+    "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
+
   return (
-    <div className="flex justify-center mx-auto h-dvh my-auto bg-gradient-to-br from-yellow-200 to-blue-700 shadow-xl shadow-gray-400">
-      <div className="w-3/12">
+    <div className={`flex justify-center min-h-dvh ${dayTime}`}>
+      <div className="flex flex-col h-fit w-dvw max-w-lg my-4 px-2 outline-dotted outline-green-500">
         <SearchBar rounding={containerRounding} />
 
         {/* if weather is not null, then load */}
