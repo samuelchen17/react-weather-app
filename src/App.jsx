@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className={`flex justify-center min-h-dvh ${dayTime}`}>
-      <div className="flex flex-col h-fit w-dvw max-w-lg my-4 px-2 outline-dotted outline-green-500">
+      <div className="flex flex-col h-fit w-dvw max-w-lg my-4 px-2 outline-dotted outline-green-500 overflow-auto">
         <SearchBar rounding={containerRounding} />
 
         {/* if weather is not null, then load */}
