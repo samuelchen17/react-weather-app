@@ -36,8 +36,8 @@ function TempDisplay({
         <div className="flex flex-col items-center"></div>
       </div>
       <div className="flex items-center flex-col maxWidth:pl-0 maxWidth:pt-4">
-        <p>Rise: {sunrise}</p>
-        <p>Set: {sunset}</p>
+        <p>Sunrise: {sunrise}</p>
+        <p>Sunset: {sunset}</p>
         <p>Humidity: {humidity}%</p>
         <p>Wind: {wind_speed.toFixed(1)} km/h</p>
       </div>
@@ -46,36 +46,3 @@ function TempDisplay({
 }
 
 export default TempDisplay;
-
-// function TempDisplay({
-//     design,
-//     // current: { temp, conditions }
-//   }) {
-//     const highLowClass = "flex mx-4 text-white";
-//     return (
-//       <div className={`flex flex-col ${design} py-4 text-white`}>
-//         <p className="flex justify-center text-3xl">
-//           {/* {conditions} */}
-//           CLEAR
-//         </p>
-//         <div className="flex flex-row items-center justify-center">
-//           <img
-//             className=""
-//             src="http://openweathermap.org/img/wn/01d@2x.png"
-//             alt=""
-//           />
-//           <p className="text-5xl">
-//             {/* {temp.toFixed()}°C */}
-//             24
-//           </p>
-//         </div>
-//         <div className="flex flex-col justify-center items-center py-8 text-xl">
-//           <p>feels like 19°</p>
-//         </div>
-//         <div className="flex justify-center items-center flex-row">
-//           <p className={highLowClass}>low: 8°</p>
-//           <p className={highLowClass}>high: 25°</p>
-//         </div>
-//       </div>
-//     );
-//   }
