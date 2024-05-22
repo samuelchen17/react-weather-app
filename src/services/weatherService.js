@@ -8,21 +8,23 @@ function getWeatherUrl(version, apiName, searchParams) {
   const url = new URL(BASE_URL + version + "/" + apiName);
   // spreading searchParam here as it is from App.jsx
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
-
+  console.log(url);
   return fetch(url).then((res) => res.json());
 }
 
 // get coordinates of the city
-const getLatLon = (data) => {
+const getCityInfo = (data) => {
   const {
     coord: { lat, lon },
+    sys: { country },
+    name,
   } = data;
 
-  return { lat, lon };
+  return { lat, lon, country, name };
 };
 
 // Format data
-const formatWeatherData = (data) => {
+const formatWeatherData = (data, cityInfo) => {
   let { timezone, current, hourly, daily } = data;
 
   current = {
@@ -58,7 +60,7 @@ const formatWeatherData = (data) => {
     };
   });
 
-  return { timezone, current, hourly, daily };
+  return { timezone, current, hourly, daily, cityInfo };
 };
 
 const formatDateTime = (
@@ -74,18 +76,18 @@ const getIconFromURL = (iconID) =>
 // Get the weather data from the API using coordinates
 const weatherData = async (searchParams) => {
   // get coordinates based on city name search
-  const cityCoord = await getWeatherUrl("2.5", "weather", searchParams).then(
-    getLatLon
+  const cityInfo = await getWeatherUrl("2.5", "weather", searchParams).then(
+    getCityInfo
   );
 
   // format the weather data
   const formattedWeatherData = getWeatherUrl("3.0", "onecall", {
-    lat: cityCoord.lat,
-    lon: cityCoord.lon,
+    lat: cityInfo.lat,
+    lon: cityInfo.lon,
     exclude: "minutely,alerts",
     appid: API_KEY,
     units: "metric",
-  }).then(formatWeatherData);
+  }).then((data) => formatWeatherData(data, cityInfo));
 
   //   console.log(formattedWeatherData);
   return formattedWeatherData;

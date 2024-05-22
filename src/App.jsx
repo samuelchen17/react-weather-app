@@ -22,7 +22,7 @@ function App() {
     fetchWeather();
   }, [search]);
 
-  const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-2";
+  const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-3";
 
   const dayTime =
     "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
@@ -34,13 +34,14 @@ function App() {
   return (
     <div className={`flex justify-center min-h-dvh ${dayTime}`}>
       <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
-        <SearchBar />
+        <SearchBar setSearch={setSearch} />
         {/* if weather is not null, then load */}
         {weather && (
           <div>
             <LocationDateTime
               timezone={weather.timezone}
               current={weather.current}
+              cityInfo={weather.cityInfo}
               design={containerDesign}
             />
             <TempDisplay

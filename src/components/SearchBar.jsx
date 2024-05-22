@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SearchBar() {
+function SearchBar({ setSearch }) {
+  const [city, setCity] = useState("");
+
+  const handleSearch = () => {
+    if (city !== "") setSearch({ q: city });
+  };
+
   const iconClass =
     "w-12 h-12 text-white cursor-pointer transition ease-out hover:scale-125";
   return (
@@ -9,6 +15,8 @@ function SearchBar() {
         type="text"
         placeholder="city name"
         className={`text-xl font-light p-2 w-full shadow-xl focus:outline-none rounded-xl capitalize placeholder:lowercase`}
+        value={city}
+        onChange={(e) => setCity(e.currentTarget.value)}
       />
       {/* search icon */}
       <svg
@@ -16,6 +24,7 @@ function SearchBar() {
         viewBox="0 0 16 16"
         fill="currentColor"
         className={iconClass}
+        onClick={handleSearch}
       >
         <path
           fillRule="evenodd"
