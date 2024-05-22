@@ -11,17 +11,18 @@ function App() {
   const [weather, setWeather] = useState(null);
 
   // runs on first render and anytime search changes
-  // useEffect(() => {
-  //   const fetchWeather = async () => {
-  //     // const data = await weatherData({ q: "melbourne" });
-  //     // console.log(data);
-  //     await weatherData({ ...search }).then((data) => {
-  //       setWeather(data);
-  //     });
-  //   };
+  useEffect(() => {
+    const fetchWeather = async () => {
+      // const data = await weatherData({ q: "melbourne" });
+      // console.log(data);
+      await weatherData({ ...search }).then((data) => {
+        setWeather(data);
+        console.log(data);
+      });
+    };
 
-  //   fetchWeather();
-  // }, [search]);
+    fetchWeather();
+  }, [search]);
 
   // console.log(weather.current.conditions);
 
@@ -29,6 +30,8 @@ function App() {
 
   const dayTime =
     "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
+
+  // implement change in background based on sun rise and set
   const nightTime =
     "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
 

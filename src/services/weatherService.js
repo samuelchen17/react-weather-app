@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/";
 
@@ -24,10 +26,11 @@ const formatWeatherData = (data) => {
   let { timezone, current, hourly, daily } = data;
 
   current = {
-    dt: current.dt,
+    date: formatDateTime(current.dt, timezone, "cccc, dd LLL yyyy"),
+    time: formatDateTime(current.dt, timezone, "hh:mm a"),
     temp: current.temp,
-    sunrise: current.sunrise,
-    sunset: current.sunset,
+    sunrise: formatDateTime(current.sunrise, timezone, "hh:mm a"),
+    sunset: formatDateTime(current.sunset, timezone, "hh:mm a"),
     feels_like: current.feels_like,
     conditions: current.weather[0].main,
     icon: current.weather[0].icon,
@@ -37,7 +40,7 @@ const formatWeatherData = (data) => {
 
   hourly = hourly.slice(1, 10).map((d) => {
     return {
-      title: d.dt,
+      title: formatDateTime(d.dt, timezone, "hh:mm a"),
       icon: d.weather[0].icon,
       temp: d.temp,
     };
@@ -45,7 +48,7 @@ const formatWeatherData = (data) => {
 
   daily = daily.slice(1, 7).map((d) => {
     return {
-      title: d.dt,
+      title: formatDateTime(d.dt, timezone, "ccc"),
       icon: d.weather[0].icon,
       temp: d.temp.day,
       low: d.temp.min,
@@ -55,6 +58,12 @@ const formatWeatherData = (data) => {
 
   return { timezone, current, hourly, daily };
 };
+
+const formatDateTime = (
+  seconds,
+  timezone,
+  format = "cccc, dd LLL yyyy hh:mm a"
+) => DateTime.fromSeconds(seconds).setZone(timezone).toFormat(format);
 
 // Get weather icon from URL
 const getIconFromURL = (iconID) =>
