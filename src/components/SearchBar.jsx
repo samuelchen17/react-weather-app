@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
+import { GEO_URL, geoOptions } from "../services/geoDbApi";
 
 function SearchBar({ setSearch }) {
   const [city, setCity] = useState(null);
 
   const handleSearch = (searchData) => {
     setCity(searchData);
+  };
+
+  const loadOptions = async () => {
+    try {
+      const response = await fetch(url, options);
+      const result = await response.text();
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // const iconClass =
