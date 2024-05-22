@@ -18,29 +18,28 @@ function TempDisplay({
 }) {
   return (
     <div className={`flex flex-col ${design} py-6 text-white`}>
-      <div className="flex maxWidth:flex-row flex-col justify-between mx-2">
-        <div className="flex flex-col items-center">
-          <p className="text-xl font-bold">{conditions}</p>
-          <img className="" src={getIcon(icon)} alt="weatherIcon" />
-        </div>
+      <p className="flex justify-center text-xl font-bold pb-4">{conditions}</p>
 
-        <div className="flex flex-col items-center">
-          <p>FEELS LIKE: {feels_like.toFixed()}°C</p>
-          <p className="text-6xl">{temp.toFixed()}°C</p>
+      <div className="flex maxWidth:flex-row maxWidth:justify-center flex-col mx-2">
+        <div className="flex flex-col items-center maxWidth:mr-6">
+          <p>Feels like {feels_like.toFixed()}°</p>
+          <p className="text-6xl py-2">{temp.toFixed()}°C</p>
           <div className="flex flex-row">
-            <p className="mr-2">L: {low.toFixed()}°C</p>
-            <p className="ml-2">H: {high.toFixed()}°C</p>
+            <p className="mr-2">L: {low.toFixed()}°</p>
+            <p className="ml-2">H: {high.toFixed()}°</p>
           </div>
+        </div>
+        <div className="flex flex-col items-center maxWidth:ml-6">
+          <img className="size-32" src={getIcon(icon)} alt="weatherIcon" />
         </div>
 
-        <div className="flex flex-col items-center">
-          <div className="flex justify-center flex-col maxWidth:pl-0 pl-7 [&_p]:py-0.5">
-            <p>sun rise: {sunrise}</p>
-            <p>sun set: {sunset}</p>
-            <p>humidity: {humidity}%</p>
-            <p>wind speed: {wind_speed}km/h</p>
-          </div>
-        </div>
+        <div className="flex flex-col items-center"></div>
+      </div>
+      <div className="flex items-center flex-col maxWidth:pl-0 maxWidth:pt-4">
+        <p>Rise: {sunrise}</p>
+        <p>Set: {sunset}</p>
+        <p>Humidity: {humidity}%</p>
+        <p>Wind: {wind_speed.toFixed(1)} km/h</p>
       </div>
     </div>
   );

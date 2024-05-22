@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className={`flex justify-center min-h-dvh ${dayTime}`}>
-      <div className="flex flex-col h-fit w-dvw max-w-lg px-2 outline-dotted outline-green-500 overflow-auto">
+      <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
         <SearchBar />
         {/* if weather is not null, then load */}
         {weather && (
