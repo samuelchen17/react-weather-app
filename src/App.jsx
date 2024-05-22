@@ -4,7 +4,7 @@ import LocationDateTime from "./components/LocationDateTime";
 import TempDisplay from "./components/TempDisplay";
 import HourlyForecast from "./components/HourlyForecast";
 import WeeklyForecast from "./components/WeeklyForecast";
-import { getIconFromURL, weatherData } from "./services/weatherService";
+import { getIconFromURL, weatherData } from "./services/openWeatherApi";
 
 function App() {
   const [search, setSearch] = useState({ q: "sydney" });
@@ -34,7 +34,7 @@ function App() {
         weather.current.dt >= weather.current.riseDt &&
         weather.current.dt <= weather.current.setDt
       ) {
-        setBackground(dayTime);
+        setBackground(dayTime); // could make this into an object to change element backgrounds
       } else {
         setBackground(nightTime);
       }
