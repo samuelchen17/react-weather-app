@@ -9,30 +9,42 @@ import { getIconFromURL, weatherData } from "./services/weatherService";
 function App() {
   const [search, setSearch] = useState({ q: "sydney" });
   const [weather, setWeather] = useState(null);
+  const [background, setBackground] = useState("");
+
+  const dayTime =
+    "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
+  const nightTime =
+    "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
 
   // runs on first render and anytime search changes
   useEffect(() => {
     const fetchWeather = async () => {
       await weatherData({ ...search }).then((data) => {
         setWeather(data);
-        console.log(data);
       });
     };
 
     fetchWeather();
   }, [search]);
 
+  // change background colour depending on day or night
+  useEffect(() => {
+    if (weather) {
+      if (
+        weather.current.dt >= weather.current.riseDt &&
+        weather.current.dt <= weather.current.setDt
+      ) {
+        setBackground(dayTime);
+      } else {
+        setBackground(nightTime);
+      }
+    }
+  }, [weather]);
+
   const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-3";
 
-  const dayTime =
-    "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
-
-  // implement change in background based on sun rise and set
-  const nightTime =
-    "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
-
   return (
-    <div className={`flex justify-center min-h-dvh ${dayTime}`}>
+    <div className={`flex justify-center min-h-dvh ${background}`}>
       <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
         <SearchBar setSearch={setSearch} />
         {/* if weather is not null, then load */}

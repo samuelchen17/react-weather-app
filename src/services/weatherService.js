@@ -8,7 +8,6 @@ function getWeatherUrl(version, apiName, searchParams) {
   const url = new URL(BASE_URL + version + "/" + apiName);
   // spreading searchParam here as it is from App.jsx
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
-  console.log(url);
   return fetch(url).then((res) => res.json());
 }
 
@@ -30,6 +29,9 @@ const formatWeatherData = (data, cityInfo) => {
   current = {
     date: formatDateTime(current.dt, timezone, "cccc, dd LLL yyyy"),
     time: formatDateTime(current.dt, timezone, "hh:mm a"),
+    dt: current.dt,
+    riseDt: current.sunrise,
+    setDt: current.sunset,
     temp: current.temp,
     sunrise: formatDateTime(current.sunrise, timezone, "hh:mm a"),
     sunset: formatDateTime(current.sunset, timezone, "hh:mm a"),
