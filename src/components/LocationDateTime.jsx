@@ -1,14 +1,14 @@
 import React from "react";
 
-function LocationDateTime({ design }) {
+function LocationDateTime({ design, current: { date, time }, timezone }) {
   return (
     <div className={`${design}`}>
       <div className="flex justify-center flex-col items-center">
-        <p className="text-white text-3xl m-4">Melbourne, AU</p>
+        <p className="text-white text-3xl m-4">{timezone}</p>
       </div>
       <div className="flex justify-center flex-col items-center">
-        <p className="text-white text-lg mb-4">Monday, 20 May 2024</p>
-        <p className="text-white text-lg mb-4">Time: 11:12 AM</p>
+        <p className="text-white text-lg mb-4">{date}</p>
+        <p className="text-white text-lg mb-4">Time: {time}</p>
       </div>
     </div>
   );

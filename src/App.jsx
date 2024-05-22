@@ -7,14 +7,12 @@ import WeeklyForecast from "./components/WeeklyForecast";
 import { getIconFromURL, weatherData } from "./services/weatherService";
 
 function App() {
-  const [search, setSearch] = useState({ q: "melbourne" });
+  const [search, setSearch] = useState({ q: "sydney" });
   const [weather, setWeather] = useState(null);
 
   // runs on first render and anytime search changes
   useEffect(() => {
     const fetchWeather = async () => {
-      // const data = await weatherData({ q: "melbourne" });
-      // console.log(data);
       await weatherData({ ...search }).then((data) => {
         setWeather(data);
         console.log(data);
@@ -23,8 +21,6 @@ function App() {
 
     fetchWeather();
   }, [search]);
-
-  // console.log(weather.current.conditions);
 
   const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-2";
 
@@ -39,26 +35,31 @@ function App() {
     <div className={`flex justify-center min-h-dvh ${dayTime}`}>
       <div className="flex flex-col h-fit w-dvw max-w-lg px-2 outline-dotted outline-green-500 overflow-auto">
         <SearchBar />
-
         {/* if weather is not null, then load */}
-        {/* {weather && (
-          <div> */}
-        <LocationDateTime design={containerDesign} />
-        <TempDisplay
-          // current={weather.current}
-          design={containerDesign}
-        />
-
-        <HourlyForecast
-          // items={weather.hourly}
-          design={containerDesign}
-        />
-        <WeeklyForecast
-          // items={weather.daily}
-          design={containerDesign}
-        />
-        {/* </div>
-        )} */}
+        {weather && (
+          <div>
+            <LocationDateTime
+              timezone={weather.timezone}
+              current={weather.current}
+              design={containerDesign}
+            />
+            <TempDisplay
+              current={weather.current}
+              design={containerDesign}
+              getIcon={getIconFromURL}
+            />
+            <HourlyForecast
+              hourly={weather.hourly}
+              design={containerDesign}
+              getIcon={getIconFromURL}
+            />
+            <WeeklyForecast
+              daily={weather.daily}
+              design={containerDesign}
+              getIcon={getIconFromURL}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

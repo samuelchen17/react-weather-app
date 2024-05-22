@@ -36,11 +36,13 @@ const formatWeatherData = (data) => {
     icon: current.weather[0].icon,
     low: daily[0].temp.min,
     high: daily[0].temp.max,
+    humidity: current.humidity,
+    wind_speed: current.wind_speed,
   };
 
-  hourly = hourly.slice(1, 10).map((d) => {
+  hourly = hourly.slice(1, 24).map((d) => {
     return {
-      title: formatDateTime(d.dt, timezone, "hh:mm a"),
+      time: formatDateTime(d.dt, timezone, "hh:mm a"),
       icon: d.weather[0].icon,
       temp: d.temp,
     };
@@ -48,7 +50,7 @@ const formatWeatherData = (data) => {
 
   daily = daily.slice(1, 7).map((d) => {
     return {
-      title: formatDateTime(d.dt, timezone, "ccc"),
+      day: formatDateTime(d.dt, timezone, "ccc"),
       icon: d.weather[0].icon,
       temp: d.temp.day,
       low: d.temp.min,
