@@ -11,10 +11,19 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [background, setBackground] = useState("");
 
-  const dayTime =
-    "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
-  const nightTime =
-    "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
+  // handles city data
+  const handleOnSearch = (searchData) => {
+    console.log(searchData);
+    // store in separate variables
+    const [lat, lon] = searchData.value.split(" ");
+    const nameCountry = searchData.label;
+    //setSearch here???????????????
+    return {
+      lat,
+      lon,
+      nameCountry,
+    };
+  };
 
   // runs on first render and anytime search changes
   useEffect(() => {
@@ -25,6 +34,12 @@ function App() {
     };
     fetchWeather();
   }, [search]);
+
+  const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-3";
+  const dayTime =
+    "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
+  const nightTime =
+    "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
 
   // change background colour depending on day or night
   useEffect(() => {
@@ -39,12 +54,6 @@ function App() {
       }
     }
   }, [weather]);
-
-  const handleOnSearch = (searchData) => {
-    console.log(searchData);
-  };
-
-  const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-3";
 
   return (
     <div className={`flex justify-center min-h-dvh ${background}`}>

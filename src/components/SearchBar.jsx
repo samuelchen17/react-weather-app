@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { GEO_URL, geoOptions } from "../services/geoDbApi";
 
-function SearchBar({ setSearch, onSearch }) {
+function SearchBar({ onSearch }) {
   const [city, setCity] = useState(null);
 
   const handleSearch = (searchData) => {
