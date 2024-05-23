@@ -2,18 +2,26 @@ import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { GEO_URL, geoOptions } from "../services/geoDbApi";
 
-function SearchBar({ setSearch }) {
+function SearchBar({ setSearch, onSearch }) {
   const [city, setCity] = useState(null);
 
   const handleSearch = (searchData) => {
     setCity(searchData);
+    onSearch(searchData);
   };
 
-  const loadOptions = async () => {
+  const loadOptions = async (userInput) => {
+    const URL = `${GEO_URL}?minPopulation=1000000&namePrefix=${userInput}`;
     try {
-      const response = await fetch(url, options);
-      const result = await response.text();
-      console.log(result);
+      const response = await fetch(URL, geoOptions);
+      const result = await response.json();
+      // console.log(result);
+      return {
+        options: result.data.map((city) => ({
+          label: `${city.name}, ${city.countryCode}`,
+          value: `${city.latitude} ${city.longitude}`,
+        })),
+      };
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +38,7 @@ function SearchBar({ setSearch }) {
         debounceTimeout={700}
         value={city}
         onChange={handleSearch}
-        // loadOptions={loadOptions}
+        loadOptions={loadOptions}
       />
       {/* <input
         type="text"

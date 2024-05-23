@@ -23,7 +23,6 @@ function App() {
         setWeather(data);
       });
     };
-
     fetchWeather();
   }, [search]);
 
@@ -41,12 +40,16 @@ function App() {
     }
   }, [weather]);
 
+  const handleOnSearch = (searchData) => {
+    console.log(searchData);
+  };
+
   const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-3";
 
   return (
     <div className={`flex justify-center min-h-dvh ${background}`}>
       <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
-        <SearchBar setSearch={setSearch} />
+        <SearchBar setSearch={setSearch} onSearch={handleOnSearch} />
         {/* if weather is not null, then load */}
         {weather && (
           <div>
