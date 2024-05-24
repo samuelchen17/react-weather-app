@@ -10,6 +10,7 @@ function SearchBar({ setSearch }) {
     setSearch(formatCityData(searchData));
   };
 
+  // handle current location icon click
   const handleOnClick = () => {
     // check if browser supports geolocation
     if (navigator.geolocation) {
@@ -30,6 +31,7 @@ function SearchBar({ setSearch }) {
     }
   };
 
+  // format lat and lon data into object
   const formatCityData = (searchData) => {
     const [lat, lon] = searchData.value.split(" ").map(Number);
     const cityData = {
@@ -72,7 +74,7 @@ function SearchBar({ setSearch }) {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-10 text-white"
+        className="size-10 text-white cursor-pointer hover:scale-125"
         onClick={handleOnClick}
       >
         <path

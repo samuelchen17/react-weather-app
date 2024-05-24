@@ -11,6 +11,7 @@ function getWeatherUrl(version, apiName, searchParams) {
   return fetch(url).then((res) => res.json());
 }
 
+// format country and city name
 const getCityInfo = (data) => {
   const {
     sys: { country },

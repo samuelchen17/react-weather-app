@@ -5,11 +5,11 @@ import TempDisplay from "./components/TempDisplay";
 import HourlyForecast from "./components/HourlyForecast";
 import WeeklyForecast from "./components/WeeklyForecast";
 import { getIconFromURL, weatherData } from "./services/openWeatherApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [search, setSearch] = useState({
-    // cityName: "Sydney",
-    // country: "AU",
     lat: -33.86785,
     lon: 151.20732,
   });
@@ -19,7 +19,9 @@ function App() {
   // runs on first render and anytime search changes
   useEffect(() => {
     const fetchWeather = async () => {
+      toast.info("Fetching weather data.");
       await weatherData({ ...search }).then((data) => {
+        toast.success("Weather data fetched.");
         setWeather(data);
       });
     };
@@ -83,6 +85,18 @@ function App() {
           </div>
         )}
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        limit={2}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }
