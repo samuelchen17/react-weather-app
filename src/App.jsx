@@ -14,7 +14,7 @@ function App() {
     lon: 151.20732,
   });
   const [weather, setWeather] = useState(null);
-  const [background, setBackground] = useState("");
+  const [background, setBackground] = useState({});
 
   // runs on first render and anytime search changes
   useEffect(() => {
@@ -26,11 +26,16 @@ function App() {
     fetchWeather();
   }, [search]);
 
-  const containerDesign = "rounded-xl bg-sky-500/[.30] shadow-xl my-3";
-  const dayTime =
-    "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%";
-  const nightTime =
-    "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%"; // gray 800 for child elements
+  const dayTheme = {
+    backgroundTheme:
+      "bg-gradient-to-br from-yellow-100 from-5% to-blue-400 to-90%",
+    elementTheme: "rounded-xl bg-sky-500/[.30] shadow-xl my-3",
+  };
+  const nightTheme = {
+    backgroundTheme:
+      "bg-gradient-to-br from-gray-400 from-5% to-gray-900 to-90%",
+    elementTheme: "rounded-xl bg-sky-800/[.30] shadow-xl my-3",
+  };
 
   // change background colour depending on day or night
   useEffect(() => {
@@ -39,15 +44,17 @@ function App() {
         weather.current.dt >= weather.current.riseDt &&
         weather.current.dt <= weather.current.setDt
       ) {
-        setBackground(dayTime); // could make this into an object to change element backgrounds
+        setBackground(dayTheme); // could make this into an object to change element backgrounds
       } else {
-        setBackground(nightTime);
+        setBackground(nightTheme);
       }
     }
   }, [weather]);
 
   return (
-    <div className={`flex justify-center min-h-dvh ${background}`}>
+    <div
+      className={`flex justify-center min-h-dvh ${background.backgroundTheme}`}
+    >
       <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
         <SearchBar setSearch={setSearch} />
         {/* if weather is not null, then load */}
@@ -56,20 +63,23 @@ function App() {
             <LocationDateTime
               timezone={weather.timezone}
               current={weather.current}
-              design={containerDesign}
+              design={background.elementTheme}
               cityInfo={weather.cityInfo}
             />
             <TempDisplay
               current={weather.current}
-              design={containerDesign}
+              design={background.elementTheme}
               getIcon={getIconFromURL}
             />
             <HourlyForecast
               hourly={weather.hourly}
-              design={containerDesign}
+              design={background.elementTheme}
               getIcon={getIconFromURL}
             />
-            <WeeklyForecast daily={weather.daily} design={containerDesign} />
+            <WeeklyForecast
+              daily={weather.daily}
+              design={background.elementTheme}
+            />
           </div>
         )}
       </div>
