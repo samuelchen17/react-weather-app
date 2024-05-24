@@ -69,11 +69,7 @@ function App() {
               design={containerDesign}
               getIcon={getIconFromURL}
             />
-            <WeeklyForecast
-              daily={weather.daily}
-              design={containerDesign}
-              getIcon={getIconFromURL}
-            />
+            <WeeklyForecast daily={weather.daily} design={containerDesign} />
           </div>
         )}
       </div>
