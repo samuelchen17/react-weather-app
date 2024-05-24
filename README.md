@@ -15,3 +15,4 @@ grabs weather data fr
 Added Features
 
 - Background changes colour depending on if the sun has set
+- auto complete for city search

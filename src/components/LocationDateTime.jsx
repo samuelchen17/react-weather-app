@@ -4,7 +4,6 @@ function LocationDateTime({
   design,
   current: { date, time },
   location: { cityName, country },
-  // cityInfo: { cityName, country },
 }) {
   return (
     <div className={`${design}`}>

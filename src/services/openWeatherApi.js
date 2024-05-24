@@ -12,17 +12,6 @@ function getWeatherUrl(version, apiName, searchParams) {
   return fetch(url).then((res) => res.json());
 }
 
-// get coordinates of the city
-// const getCityInfo = (data) => {
-//   const {
-//     coord: { lat, lon },
-//     sys: { country },
-//     name,
-//   } = data;
-
-//   return { lat, lon, country, name };
-// };
-
 // Format data
 const formatWeatherData = (data) => {
   let { timezone, current, hourly, daily } = data;
@@ -78,11 +67,6 @@ const getIconFromURL = (iconID) =>
 
 // Get the weather data from the API using coordinates
 const weatherData = async (searchParams) => {
-  // get coordinates based on city name search
-  // const cityInfo = await getWeatherUrl("2.5", "weather", searchParams).then(
-  //   getCityInfo
-  // );
-
   // format the weather data
   const formattedWeatherData = getWeatherUrl("3.0", "onecall", {
     lat: searchParams.lat,
@@ -92,7 +76,6 @@ const weatherData = async (searchParams) => {
     units: "metric",
   }).then((data) => formatWeatherData(data));
 
-  //   console.log(formattedWeatherData);
   return formattedWeatherData;
 };
 
