@@ -2,13 +2,43 @@ import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { GEO_URL, geoOptions } from "../services/geoDbApi";
 
-function SearchBar({ onSearch }) {
+function SearchBar({ setSearch }) {
   const [city, setCity] = useState(null);
 
   const handleSearch = (searchData) => {
     setCity(searchData);
-    onSearch(searchData);
+    console.log(searchData); // does not work on first run through, city is stored after handle saerch finishes
+    formatCityData(searchData);
+    console.log(formatCityData(searchData));
   };
+
+  const formatCityData = (searchData) => {
+    const [lat, lon] = searchData.value.split(" ").map(Number);
+    const [cityName, country] = searchData.label
+      .split(", ")
+      .map((str) => str.trim());
+    const cityData = {
+      cityName: cityName,
+      country: country,
+      lat: lat,
+      lon: lon,
+    };
+    return cityData;
+  };
+
+  // // handles city data
+  // const onSearch = (searchData) => {
+  //   // console.log(searchData);
+  //   // store in separate variables
+  //   const [lat, lon] = searchData.value.split(" ");
+  //   const nameCountry = searchData.label;
+  //   //setSearch here???????????????
+  //   return {
+  //     lat,
+  //     lon,
+  //     nameCountry,
+  //   };
+  // };
 
   const loadOptions = async (userInput) => {
     const URL = `${GEO_URL}?minPopulation=1000000&namePrefix=${userInput}`;

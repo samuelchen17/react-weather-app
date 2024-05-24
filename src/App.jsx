@@ -11,20 +11,6 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [background, setBackground] = useState("");
 
-  // handles city data
-  const handleOnSearch = (searchData) => {
-    console.log(searchData);
-    // store in separate variables
-    const [lat, lon] = searchData.value.split(" ");
-    const nameCountry = searchData.label;
-    //setSearch here???????????????
-    return {
-      lat,
-      lon,
-      nameCountry,
-    };
-  };
-
   // runs on first render and anytime search changes
   useEffect(() => {
     const fetchWeather = async () => {
@@ -58,7 +44,7 @@ function App() {
   return (
     <div className={`flex justify-center min-h-dvh ${background}`}>
       <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
-        <SearchBar setSearch={setSearch} onSearch={handleOnSearch} />
+        <SearchBar setSearch={setSearch} />
         {/* if weather is not null, then load */}
         {weather && (
           <div>
