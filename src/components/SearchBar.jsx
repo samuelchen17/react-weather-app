@@ -10,6 +10,29 @@ function SearchBar({ setSearch }) {
     setSearch(formatCityData(searchData));
   };
 
+  const handleOnClick = () => {
+    // check if browser supports geolocation
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latLon = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+            cityName: "test",
+            country: "test",
+          };
+          setSearch(latLon);
+          console.log(latLon);
+        },
+        (error) => {
+          console.error("Error getting location:", error.message);
+        }
+      );
+    } else {
+      console.log("This browser does not support Geolocation");
+    }
+  };
+
   const formatCityData = (searchData) => {
     const [lat, lon] = searchData.value.split(" ").map(Number);
     const [cityName, country] = searchData.label
@@ -52,6 +75,26 @@ function SearchBar({ setSearch }) {
         onChange={handleSearch}
         loadOptions={loadOptions}
       />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="size-10 text-white"
+        onClick={handleOnClick}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+        />
+      </svg>
     </div>
   );
 }
