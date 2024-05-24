@@ -7,7 +7,12 @@ import WeeklyForecast from "./components/WeeklyForecast";
 import { getIconFromURL, weatherData } from "./services/openWeatherApi";
 
 function App() {
-  const [search, setSearch] = useState({ q: "sydney" });
+  const [search, setSearch] = useState({
+    cityName: "Sydney",
+    country: "AU",
+    lat: -33.86785,
+    lon: 151.20732,
+  });
   const [weather, setWeather] = useState(null);
   const [background, setBackground] = useState("");
 
@@ -16,6 +21,7 @@ function App() {
     const fetchWeather = async () => {
       await weatherData({ ...search }).then((data) => {
         setWeather(data);
+        console.log(search);
       });
     };
     fetchWeather();
@@ -51,8 +57,8 @@ function App() {
             <LocationDateTime
               timezone={weather.timezone}
               current={weather.current}
-              cityInfo={weather.cityInfo}
               design={containerDesign}
+              location={search}
             />
             <TempDisplay
               current={weather.current}

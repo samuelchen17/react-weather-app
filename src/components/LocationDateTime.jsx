@@ -2,15 +2,15 @@ import React from "react";
 
 function LocationDateTime({
   design,
-  cityInfo: { country, name },
   current: { date, time },
-  timezone,
+  location: { cityName, country },
+  // cityInfo: { cityName, country },
 }) {
   return (
     <div className={`${design}`}>
       <div className="flex justify-center flex-col items-center">
         <p className="text-white text-3xl m-4">
-          {name}, {country}
+          {cityName}, {country}
         </p>
       </div>
       <div className="flex justify-center flex-col items-center">

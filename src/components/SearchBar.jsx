@@ -7,15 +7,17 @@ function SearchBar({ setSearch }) {
 
   const handleSearch = (searchData) => {
     setCity(searchData);
-    console.log(searchData); // does not work on first run through, city is stored after handle saerch finishes
-    formatCityData(searchData);
-    console.log(formatCityData(searchData));
+    // console.log(searchData); // does not work on first run through, city is stored after handle saerch finishes
+    setSearch(formatCityData(searchData));
+    console.log(setSearch);
+    return setSearch;
   };
 
   const formatCityData = (searchData) => {
     const [lat, lon] = searchData.value.split(" ").map(Number);
     const [cityName, country] = searchData.label
       .split(", ")
+      // trim to remove any remaining white space
       .map((str) => str.trim());
     const cityData = {
       cityName: cityName,
@@ -25,20 +27,6 @@ function SearchBar({ setSearch }) {
     };
     return cityData;
   };
-
-  // // handles city data
-  // const onSearch = (searchData) => {
-  //   // console.log(searchData);
-  //   // store in separate variables
-  //   const [lat, lon] = searchData.value.split(" ");
-  //   const nameCountry = searchData.label;
-  //   //setSearch here???????????????
-  //   return {
-  //     lat,
-  //     lon,
-  //     nameCountry,
-  //   };
-  // };
 
   const loadOptions = async (userInput) => {
     const URL = `${GEO_URL}?minPopulation=1000000&namePrefix=${userInput}`;
@@ -96,3 +84,17 @@ function SearchBar({ setSearch }) {
 }
 
 export default SearchBar;
+
+// // handles city data
+// const onSearch = (searchData) => {
+//   // console.log(searchData);
+//   // store in separate variables
+//   const [lat, lon] = searchData.value.split(" ");
+//   const nameCountry = searchData.label;
+//   //setSearch here???????????????
+//   return {
+//     lat,
+//     lon,
+//     nameCountry,
+//   };
+// };
