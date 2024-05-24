@@ -3,13 +3,13 @@ import React from "react";
 function LocationDateTime({
   design,
   current: { date, time },
-  location: { cityName, country },
+  cityInfo: { country, name },
 }) {
   return (
     <div className={`${design}`}>
       <div className="flex justify-center flex-col items-center">
         <p className="text-white text-3xl m-4">
-          {cityName}, {country}
+          {name}, {country}
         </p>
       </div>
       <div className="flex justify-center flex-col items-center">

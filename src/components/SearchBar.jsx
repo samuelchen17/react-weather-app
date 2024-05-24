@@ -18,8 +18,8 @@ function SearchBar({ setSearch }) {
           const latLon = {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
-            cityName: "test",
-            country: "test",
+            // cityName: "test",
+            // country: "test",
           };
           setSearch(latLon);
           console.log(latLon);
@@ -35,13 +35,13 @@ function SearchBar({ setSearch }) {
 
   const formatCityData = (searchData) => {
     const [lat, lon] = searchData.value.split(" ").map(Number);
-    const [cityName, country] = searchData.label
-      .split(", ")
-      // trim to remove any remaining white space
-      .map((str) => str.trim());
+    // const [cityName, country] = searchData.label
+    //   .split(", ")
+    //   // trim to remove any remaining white space
+    //   .map((str) => str.trim());
     const cityData = {
-      cityName: cityName,
-      country: country,
+      // cityName: cityName,
+      // country: country,
       lat: lat,
       lon: lon,
     };

@@ -8,8 +8,8 @@ import { getIconFromURL, weatherData } from "./services/openWeatherApi";
 
 function App() {
   const [search, setSearch] = useState({
-    cityName: "Sydney",
-    country: "AU",
+    // cityName: "Sydney",
+    // country: "AU",
     lat: -33.86785,
     lon: 151.20732,
   });
@@ -57,7 +57,7 @@ function App() {
               timezone={weather.timezone}
               current={weather.current}
               design={containerDesign}
-              location={search}
+              cityInfo={weather.cityInfo}
             />
             <TempDisplay
               current={weather.current}
