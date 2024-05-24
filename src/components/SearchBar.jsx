@@ -12,14 +12,12 @@ function SearchBar({ setSearch }) {
 
   const handleOnClick = () => {
     // check if browser supports geolocation
-    if ("geolocation" in navigator) {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const latLon = {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
-            // cityName: "test",
-            // country: "test",
           };
           setSearch(latLon);
           console.log(latLon);
@@ -35,13 +33,7 @@ function SearchBar({ setSearch }) {
 
   const formatCityData = (searchData) => {
     const [lat, lon] = searchData.value.split(" ").map(Number);
-    // const [cityName, country] = searchData.label
-    //   .split(", ")
-    //   // trim to remove any remaining white space
-    //   .map((str) => str.trim());
     const cityData = {
-      // cityName: cityName,
-      // country: country,
       lat: lat,
       lon: lon,
     };
