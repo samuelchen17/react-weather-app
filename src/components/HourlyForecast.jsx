@@ -24,7 +24,10 @@ function HourlyForecast({ design, getIcon, hourly }) {
       <hr className="my-2" />
       <div className="flex flex-row overflow-x-auto">
         {hourly.map((data) => (
-          <div key={data.time} className="flex flex-col items-center pr-16">
+          <div
+            key={data.time}
+            className="flex flex-col items-center pl-2 pr-14"
+          >
             <p className="text-sm whitespace-nowrap">{data.time}</p>
             <img
               className="size-12"

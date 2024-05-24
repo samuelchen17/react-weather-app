@@ -20,7 +20,6 @@ function SearchBar({ setSearch }) {
             lon: position.coords.longitude,
           };
           setSearch(latLon);
-          console.log(latLon);
         },
         (error) => {
           console.error("Error getting location:", error.message);
@@ -58,9 +57,9 @@ function SearchBar({ setSearch }) {
   };
 
   return (
-    <div className="flex flex-row w-full items-center justify-center my-2 space-x-2 ">
+    <div className="flex flex-row w-full items-center justify-center my-2 space-x-2 pr-1">
       <AsyncPaginate
-        className={`text-xl font-light p-2 w-full`}
+        className={`text-xl font-light p-1 w-full`}
         placeholder="city name"
         debounceTimeout={700}
         value={city}
