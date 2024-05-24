@@ -8,6 +8,7 @@ function getWeatherUrl(version, apiName, searchParams) {
   const url = new URL(BASE_URL + version + "/" + apiName);
   // spreading searchParam here as it is from App.jsx
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
+  console.log(url);
   return fetch(url).then((res) => res.json());
 }
 
@@ -48,6 +49,11 @@ const formatWeatherData = (data) => {
       temp: d.temp.day,
       low: d.temp.min,
       high: d.temp.max,
+      sunrise: formatDateTime(d.sunrise, timezone, "hh:mm a"),
+      sunset: formatDateTime(d.sunset, timezone, "hh:mm a"),
+      feels_like: d.feels_like.day,
+      humidity: d.humidity,
+      wind_speed: d.wind_speed,
     };
   });
 

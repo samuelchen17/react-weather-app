@@ -33,28 +33,28 @@ function AccordionDailyForecast({ daily }) {
           {openIndex === index && (
             <div className="flex maxWidth:flex-row mb-4 flex-col justify-between text-sm">
               <div className="flex flex-row justify-between">
-                <div className="maxWidth:pr-9 space-y-1">
+                <div className="maxWidth:pr-20 space-y-1">
                   <p>Sunrise: </p>
                   <p>Sunset: </p>
-                  <p>Temperature: </p>
+                  <p>Wind: </p>
                 </div>
                 <div className="space-y-1">
-                  <p>20%</p>
-                  <p>20deg</p>
-                  <p>30km/h</p>
+                  <p>{data.sunrise}</p>
+                  <p>{data.sunset}</p>
+                  <p>{data.wind_speed.toFixed(1)} km/h</p>
                 </div>
               </div>
 
               <div className="flex flex-row justify-between">
                 <div className="space-y-1">
+                  <p>Temperature: </p>
                   <p>Feels like:</p>
                   <p>Humidity: </p>
-                  <p>Wind: </p>
                 </div>
                 <div className="maxWidth:pl-16 space-y-1">
-                  <p>8:00am</p>
-                  <p>8pm</p>
-                  <p>40km/h</p>
+                  <p>{data.temp.toFixed()}°</p>
+                  <p>{data.feels_like.toFixed()}°</p>
+                  <p>{data.humidity}%</p>
                 </div>
               </div>
             </div>
