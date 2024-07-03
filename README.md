@@ -11,3 +11,4 @@ This responsive weather app was created with React, Tailwind CSS, OpenWeather AP
 - Comprehensive Weather information, view sunrise and set, temperature, humidity, wind speed, and more at a glance.
 - Current location weather information search.
 - Expandable accordions for daily forecasts to provide more weather information.
+
