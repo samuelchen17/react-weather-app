@@ -20,9 +20,9 @@ function AccordionDailyForecast({ daily }) {
             // defer execution untill onClick event occurs
             onClick={() => toggleAccordion(index)}
           >
-            <p className="text-sm w-[23px]">{data.day}</p>
+            <p className="text-sm w-[35px]">{data.day}</p>
             <img
-              className="size-12 ml-2"
+              className="size-12"
               src={getIconFromURL(data.icon)}
               alt="weather icon"
             />
