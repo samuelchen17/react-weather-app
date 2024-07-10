@@ -55,33 +55,37 @@ function App() {
 
   return (
     <div
-      className={`flex justify-center min-h-dvh ${background.backgroundTheme}`}
+      className={`flex justify-center min-h-dvh ${background.backgroundTheme} md:items-center`}
     >
-      <div className="flex flex-col h-fit w-dvw max-w-lg px-2 overflow-auto">
+      <div className="flex flex-col h-fit w-full max-w-[1000px] px-2 flex-wrapp outline">
         <SearchBar setSearch={setSearch} />
         {/* if weather is not null, then load */}
         {weather && (
-          <div>
-            <LocationDateTime
-              timezone={weather.timezone}
-              current={weather.current}
-              design={background.elementTheme}
-              cityInfo={weather.cityInfo}
-            />
-            <TempDisplay
-              current={weather.current}
-              design={background.elementTheme}
-              getIcon={getIconFromURL}
-            />
-            <HourlyForecast
-              hourly={weather.hourly}
-              design={background.elementTheme}
-              getIcon={getIconFromURL}
-            />
-            <WeeklyForecast
-              daily={weather.daily}
-              design={background.elementTheme}
-            />
+          <div className="outline md:flex md:justify-between gap-4">
+            <div className="md:w-[500px]">
+              <LocationDateTime
+                timezone={weather.timezone}
+                current={weather.current}
+                design={background.elementTheme}
+                cityInfo={weather.cityInfo}
+              />
+              <TempDisplay
+                current={weather.current}
+                design={background.elementTheme}
+                getIcon={getIconFromURL}
+              />
+            </div>
+            <div className="md:w-[500px] outline outline-red-500">
+              <HourlyForecast
+                hourly={weather.hourly}
+                design={background.elementTheme}
+                getIcon={getIconFromURL}
+              />
+              <WeeklyForecast
+                daily={weather.daily}
+                design={background.elementTheme}
+              />
+            </div>
           </div>
         )}
       </div>

@@ -6,7 +6,7 @@ function LocationDateTime({
   cityInfo: { country, name },
 }) {
   return (
-    <div className={`${design}`}>
+    <div className={`${design} md:py-1`}>
       <div className="flex justify-center flex-col items-center">
         <p className="text-white text-3xl m-4">
           {name}, {country}

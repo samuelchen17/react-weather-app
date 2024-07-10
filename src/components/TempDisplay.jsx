@@ -17,7 +17,7 @@ function TempDisplay({
   },
 }) {
   return (
-    <div className={`flex flex-col ${design} py-6 text-white`}>
+    <div className={`flex flex-col ${design} py-6 text-white h-full`}>
       <p className="flex justify-center text-xl font-bold pb-4">{conditions}</p>
 
       <div className="flex maxWidth:flex-row maxWidth:justify-center flex-col mx-2">
